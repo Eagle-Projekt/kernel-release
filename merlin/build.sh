@@ -20,7 +20,6 @@ GCC32_DIR=$KERNEL_DIR/gcc32
 TC_DIR=$KERNEL_DIR/clang-llvm
 
 # Kernel info
-ZIPNAME="Syncronized"
 VERSION="$VER"
 AUTHOR="Sultanㅤ👾 ⁪⁬⁮⁮⁮⁮ ‌‌‌"
 ARCH=arm64
@@ -128,8 +127,7 @@ build_kernel() {
 <b>[*] Build Date</b>     : <code>$DATE</code>
 <b>[*] Device Name</b>    : <code>${MODEL} [${DEVICE}]</code>
 <b>[*] Defconfig</b>      : <code>$CONFIG</code>
-<b>[*] Kernel Name</b>     : <code>${ZIPNAME}</code>
-<b>[*] Kernel Version</b>   : <code>${VERSION}</code>
+<b>[*] Kernel Name</b>     : <code>${VERSION}</code>
 <b>[*] Linux Version</b>     : <code>$(make kernelversion)</code>
 <b>[*] Compiler Name</b>  : <code>${KBUILD_COMPILER_STRING}</code>
 <b>-----------------------------------------</b>
@@ -194,8 +192,8 @@ gen_zip() {
 	mv "$KERNEL_DIR"/out/arch/arm64/boot/dts/mediatek/mt6768.dtb AnyKernel3/dtb
 	mv "$KERNEL_DIR"/out/arch/arm64/boot/dtbo.img AnyKernel3
 	cdir AnyKernel3
-	zip -r $ZIPNAME-$VERSION-$DEVICE-"$ZDATE".zip . -x ".git*" -x "README.md" -x "*.zip"
-	ZIP_FINAL="$ZIPNAME-$VERSION-$DEVICE-$ZDATE"
+	zip -r $VERSION-$DEVICE-"$ZDATE".zip . -x ".git*" -x "README.md" -x "*.zip"
+	ZIP_FINAL="$VERSION-$DEVICE-$ZDATE"
 
 	if [[ $SIGN == 1 ]]; then
 		## Sign the zip before sending it to telegram
@@ -221,7 +219,7 @@ push() {
 	touch $cfile
 	{
 		echo -e "## Syncronized Kernel"
-		echo -e "* Kernel name: $ZIPNAME-$VERSION"
+		echo -e "* Kernel name: $VERSION"
 		echo -e "* Device name: ${MODEL} [$DEVICE]"
 		echo -e "* Linux version: $KERVER"
 		echo -e "* Build user: $AUTHOR"
