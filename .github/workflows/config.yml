@@ -31,6 +31,6 @@ jobs:
              cp -af merlin/build.sh kernel/ && cd kernel && chmod +x build.sh
              git config --global user.name "Tanmsyffa"
              git config --global user.email "sltnmsyffaa@gmail.com"
-             echo "https://Tanmsyffa:$GH_TOKEN@github.com" > ~/.git-credentials
-             git config --global credential.helper "store --file ~/.git-credentials"
+             echo "https://Tanmsyffa:$GH_TOKEN@github.com" > ../.pwd
+             git config --global credential.helper "store --file ../.pwd"
              ./build.sh
